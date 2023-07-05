@@ -14,11 +14,11 @@ datasource db {
 }
 
 model Review {
-  id          String   @id @default(uuid())
-  rating      Int
-  comment     String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  product_id  Int
-  customer_id Int
+  id            String   @id @default(uuid())
+  rating        Int
+  comment       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  customer_name String
+  product_id    Int
 }
