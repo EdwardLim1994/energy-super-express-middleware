@@ -20,5 +20,6 @@ model Review {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   customer_name String
+  customer_id   Int
   product_id    Int
 }

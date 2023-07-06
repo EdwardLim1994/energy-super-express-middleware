@@ -22,10 +22,10 @@ export class AppController {
 
   @Get('/reviews/customers/:customer_id')
   async getCustomerReviews(
-    @Param('customer_name') customer_name: string,
+    @Param('customer_id') customer_id: string,
   ): Promise<ReviewModel[]> {
     return this.appService.reviews({
-      where: { customer_name },
+      where: { customer_id: parseInt(customer_id) },
     });
   }
 
@@ -45,6 +45,7 @@ export class AppController {
       rating: number;
       comment?: string;
       customer_name: string;
+      customer_id: number;
       product_id: number;
     },
   ): Promise<ReviewModel> {
@@ -64,7 +65,7 @@ export class AppController {
       {
         id,
       },
-      _.omit(data, ['customer_name', 'product_id']),
+      _.omit(data, ['customer_id', 'customer_name', 'product_id']),
     );
   }
 
