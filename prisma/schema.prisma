@@ -20,6 +20,6 @@ model Review {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   customer_name String
-  customer_id   BigInt
-  product_id    BigInt
+  customer_id   String
+  product_id    String
 }

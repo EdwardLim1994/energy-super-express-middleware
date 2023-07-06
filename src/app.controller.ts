@@ -25,7 +25,7 @@ export class AppController {
     @Param('customer_id') customer_id: string,
   ): Promise<ReviewModel[]> {
     return this.appService.reviews({
-      where: { customer_id: parseInt(customer_id) },
+      where: { customer_id },
     });
   }
 
@@ -34,7 +34,7 @@ export class AppController {
     @Param('product_id') product_id: string,
   ): Promise<ReviewModel[]> {
     return this.appService.reviews({
-      where: { product_id: parseInt(product_id) },
+      where: { product_id },
     });
   }
 
@@ -45,8 +45,8 @@ export class AppController {
       rating: number;
       comment?: string;
       customer_name: string;
-      customer_id: number;
-      product_id: number;
+      customer_id: string;
+      product_id: string;
     },
   ): Promise<ReviewModel> {
     return this.appService.create(reviewData);
