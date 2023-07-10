@@ -6,6 +6,7 @@ import {
   Delete,
   Param,
   Body,
+  Query,
 } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Review as ReviewModel } from '@prisma/client';
@@ -16,8 +17,14 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/reviews')
-  async getAllReviews(): Promise<ReviewModel[]> {
-    return this.appService.reviews();
+  async getAllReviews(
+    @Query('orderBy') orderBy?: string,
+    @Query('limit') limit?: string,
+  ): Promise<ReviewModel[]> {
+    return this.appService.reviews({
+      orderBy: JSON.parse(orderBy),
+      take: limit ? parseInt(limit) : null,
+    });
   }
 
   @Get('/reviews/customers/:customer_id')

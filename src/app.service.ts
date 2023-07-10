@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from './prisma/prisma.service';
 import { Review, Prisma } from '@prisma/client';
+import * as _ from 'lodash';
 
 @Injectable()
 export class AppService {
@@ -9,6 +10,7 @@ export class AppService {
   async reviews(params?: {
     where?: Prisma.ReviewWhereInput;
     orderBy?: Prisma.ReviewOrderByWithRelationInput;
+    take?: number;
   }): Promise<Review[]> {
     return this.prisma.review.findMany(params);
   }
