@@ -18,10 +18,12 @@ export class AppController {
 
   @Get('/reviews')
   async getAllReviews(
+    @Query('where') where?: string,
     @Query('orderBy') orderBy?: string,
     @Query('limit') limit?: string,
   ): Promise<ReviewModel[]> {
     return this.appService.reviews({
+      where: JSON.parse(where),
       orderBy: JSON.parse(orderBy),
       take: limit ? parseInt(limit) : null,
     });
