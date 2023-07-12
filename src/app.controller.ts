@@ -23,9 +23,9 @@ export class AppController {
     @Query('limit') limit?: string,
   ): Promise<ReviewModel[]> {
     return this.appService.reviews({
-      where: JSON.parse(where),
-      orderBy: JSON.parse(orderBy),
-      take: limit ? parseInt(limit) : null,
+      where: where ? JSON.parse(where) : undefined,
+      orderBy: orderBy ? JSON.parse(orderBy) : undefined,
+      take: limit ? parseInt(limit) : undefined,
     });
   }
 
